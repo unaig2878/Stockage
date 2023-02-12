@@ -6,17 +6,20 @@ public class GestionPedidos {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		// aqui esta instanciado el primer cliente
 		Cliente cliente1 = new Cliente();
 		int telefono2, telefono3;
 		int resp2 = 0, cant1 = 0, cant2 = 0;
-		int cantproducto1 = 1, cantproducto2 = 1, cantproducto3 = 1, cantproducto4 = 1, cantproducto5 = 1;
+		int cantproducto1 = 0, cantproducto2 = 0, cantproducto3 = 0, cantproducto4 = 0, cantproducto5 = 0;
 		int precfin1 = 0, precfin2 = 0, precfinfin = 0, precp1 = 0, precp2 = 0;
+		// instanciamos todas las clases que vamos a necesitar
 		String codigoPago1 = null;
 		PasarelaDePago pago = new PasarelaDePago();
 		Pedido pedido = new Pedido();
+		Producto producto=new Producto();
 
-
-		// Empezamos creando los clientes
+		// Empezamos creando los clientes y metiendo los valores en los objetos con los
+		// setters
 		System.out.println("Cliente 1");
 		System.out.println("Escriba su Nombre");
 		String nombre1 = sc.nextLine();
@@ -39,6 +42,7 @@ public class GestionPedidos {
 		cliente1.setHistorial(historial1);
 		
 		// segundo cliente
+		// instanciamos el cliente
 Cliente cliente2 = new Cliente();
 System.out.println("Cliente 2");
 		System.out.println("Escriba su Nombre");
@@ -71,8 +75,8 @@ System.out.println("Cliente 2");
 		cliente2.setHistorial(historial2);
 		
 		// cliente 3
-Cliente cliente3 = new Cliente();
-System.out.println("Cliente 3");
+		Cliente cliente3 = new Cliente();
+		System.out.println("Cliente 3");
 		System.out.println("Escriba su Nombre");
 		String nombre3 = sc.nextLine();
 		cliente3.setNombre(nombre3);
@@ -81,7 +85,8 @@ System.out.println("Cliente 3");
 		String apellido3 = sc.nextLine();
 		cliente3.setApellidos(apellido3);
 		
-		// bucle para verificar que el numero este libre
+		// bucle para verificar que el numero no este siendo usado por ningun otro
+		// cliente
 		while (true) {
 			System.out.println("Escriba su telefono");
 			telefono3 = sc.nextInt();
@@ -108,7 +113,7 @@ System.out.println("Cliente 3");
 		Producto producto5 = new Producto();
 
 		// Pedir Creacion de Productos
-
+		// con los setters metemos los valores dentro de los objetos
 		System.out.println("Indique el nombre de su Producto 1");
 		String nomproducto1 = sc.nextLine();
 		producto1.setNombre(nomproducto1);
@@ -166,23 +171,37 @@ System.out.println("Cliente 3");
 		int telefonocliente = sc.nextInt();
 		System.out.println(telefonocliente);
 		if (telefonocliente == telefono1) {
-			// llamamos al metodo para realizar el pedido
+			// llamamos al metodo para realizar el pedido que pedira tanto como que producto
+			// desea como la cantidad
 			cliente1.realizarPedido(telefonocliente, precproducto1, precproducto2, precproducto3, precproducto4,
 					precproducto5, nomproducto1, nomproducto2, nomproducto3, nomproducto4, nomproducto5, telefono1,
 					telefono2, telefono3, resp2, cant1, cant2, precfin1, precfin2, precfinfin, producto1, producto2,
 					producto3, producto4, producto5, pago, precp1, precp2);
+			// el metodo toString viene de la clase pedido y nos imprime el pedido en
+			// pantalla
 			pedido.toString();
-			// llamamos al metodo para pagar
+			// cambiamos los valores usados previamente para usarlos en otro metodo
+			cantproducto1 = cliente1.getCant1();
+			cantproducto2 = cliente1.getCant2();
+
+			// Calculamos si el pedido es valido con una funcion de stockage
+			producto.Stockage(cantproducto1, cantproducto2);
+			// llamamos al metodo para pagar en el que te da la opcion de pedir pago
 			pago.elegirpago(precfin1, precfin2, precfinfin, pago);
 			// Generamos el codigo de pago
 			pago.CodigoPago(codigoPago1);
 		} else {
 			if (telefonocliente == telefono2) {
+				// sigue el mismo proceso que la anterior solo que con otro cliente
 				cliente2.realizarPedido(telefonocliente, precproducto1, precproducto2, precproducto3, precproducto4,
 						precproducto5, nomproducto1, nomproducto2, nomproducto3, nomproducto4, nomproducto5, telefono1,
 						telefono2, telefono3, resp2, cant1, cant2, precfin1, precfin2, precfinfin, producto1, producto2,
 						producto3, producto4, producto5, pago, precp1, precp2);
 				pedido.toString();
+				cantproducto1 = cliente1.getCant1();
+				cantproducto2 = cliente1.getCant2();
+
+				producto.Stockage(cantproducto1, cantproducto2);
 				pago.elegirpago(precfin1, precfin2, precfinfin, pago);
 				pago.CodigoPago(codigoPago1);
 
@@ -190,21 +209,28 @@ System.out.println("Cliente 3");
 			}
 			
 			if (telefonocliente == telefono3) {
+				// sigue el proceso de las dos anteriores solo que con otro cliente
 				cliente3.realizarPedido(telefonocliente, precproducto1, precproducto2, precproducto3, precproducto4,
 						precproducto5, nomproducto1, nomproducto2, nomproducto3, nomproducto4, nomproducto5, telefono1,
 						telefono2, telefono3, resp2, cant1, cant2, precfin1, precfin2, precfinfin, producto1, producto2,
 						producto3, producto4, producto5, pago, precp1, precp2);
 				pedido.toString();
+				cantproducto1 = cliente1.getCant1();
+				cantproducto2 = cliente1.getCant2();
+				producto.Stockage(cantproducto1, cantproducto2);
+
+
 				pago.elegirpago(precfin1, precfin2, precfinfin, pago);
 				
 				pago.CodigoPago(codigoPago1);
 
 			} else {
+				// si el numero no esta registrado le da error y le avisa
 				System.out.println("Tu telefono no esta registrado");
 			}
 		}
 
-
+		sc.close();
 	}
 
 }

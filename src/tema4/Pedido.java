@@ -80,7 +80,7 @@ class Pedido {
 				+ "\n" + cant2 + "\t" + producto2 + "\t" + precp2 + "\t" + precfin2;
 	}
 
-
+//getters y setters
 	public PasarelaDePago getPago() {
 		return pago;
 	}
@@ -115,6 +115,7 @@ class Pedido {
 		}
 	}
 
+	// estado de producto
 	enum Estado {
 		PAGADO, PREPARANDO, LISTO, SERVIDO
 	}

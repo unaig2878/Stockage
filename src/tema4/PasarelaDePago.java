@@ -8,11 +8,13 @@ public class PasarelaDePago {
 	String codigoPago;
 	static Scanner sc = new Scanner(System.in);
 
+//atributos
 	public PasarelaDePago() {
 		this.importe = 0;
 		this.codigoPago = String.valueOf((new Date()).getTime());
 	}
 
+//constructores
 	public PasarelaDePago(double importe) {
 		this.importe = importe;
 		this.codigoPago = String.valueOf((new Date()).getTime());
@@ -54,6 +56,7 @@ public class PasarelaDePago {
 			System.out.println("Porfavor indique la cantidad de dinero que va a entregar");
 			pago = sc.nextDouble();
 			if (pago > total) {
+				// calculamos las vueltas del pago en efectivo
 				vueltas = pago - total;
 				if (vueltas > 0) {
 					while (vueltas >= 50) {
@@ -165,7 +168,7 @@ public class PasarelaDePago {
 			System.out.println(numerotar);
 			int primer = Character.getNumericValue(numerotar.charAt(0));
 			int tamaño = numerotar.length();
-
+			// aplicamos restricciones al tipo de tarjeta
 			if (primer == 3 && tamaño == 15) {
 				System.out.println("Se ha realizado el pago con éxito. Código de pago: " + codigoPago);
 				System.out.println("Su tarjeta es una American Express");
@@ -207,6 +210,7 @@ public class PasarelaDePago {
 		int decision2 = sc.nextInt();
 
 		switch (decision2) {
+		// se le lleva al pago que haya decidido
 		case 1:
 			pago.pagoEfectivo();
 			System.out.println("Pago realizado con éxito. Código de pago: " + codigoPago);
@@ -234,7 +238,7 @@ public class PasarelaDePago {
 
 //metodo para pago Cuenta
 	public void pagoCuenta(String numeroCuenta) {
-
+//generamos el codigo de pago
 		System.out.println("Pago realizado con éxito. Código de pago: " + codigoPago);
 		codigoPago = String.valueOf((new Date()).getTime());
 	}

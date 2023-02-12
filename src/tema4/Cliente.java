@@ -10,6 +10,9 @@ public class Cliente {
 	private int telefono;
 	private String direccion;
 	private String historial;
+	private int cant1;
+	private int cant2;
+
 	// declaramos los atributos
 
 
@@ -36,6 +39,22 @@ public class Cliente {
 		this.fechaDeAlta = new Date();
 	}
 
+	public int getCant1() {
+		return cant1;
+	}
+
+	public void setCant1(int cant1) {
+		this.cant1 = cant1;
+	}
+
+	public int getCant2() {
+		return cant2;
+	}
+
+	public void setCant2(int cant2) {
+		this.cant2 = cant2;
+	}
+
 	// restricciones del telefono
 	public void revisartel(int telefono) {
 		while (!(telefono > 555555555 && telefono < 1000000000)) {
@@ -48,10 +67,12 @@ public class Cliente {
 		}
 	}
 
+	// metodo para agregar el codigo de pago al historial del pedido
 	public void agregarPedido(GestionPedidos codigoPago1) {
 		this.historial += codigoPago1 + "\n";
 	}
 
+	// getters y setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -106,8 +127,10 @@ public class Cliente {
 			String nomproducto4, String nomproducto5, int telefono1, int telefono2, int telefono3, int resp2, int cant1,
 			int cant2, int precfin1, int precfin2, int precfinfin, Producto producto1, Producto producto2,
 			Producto producto3, Producto producto4, Producto producto5, PasarelaDePago pago, int precp1, int precp2) {
+		// le restringimos el acceso a usuarios que no tengan cuenta
 		if (telefonocliente == telefono1 || telefonocliente == telefono2 || telefonocliente == telefono3) {
 			Scanner sc = new Scanner(System.in);
+			// imprimimos todos los pedidos posibles y le damos la opcion de elgir
 			System.out.println("Estas Registrado");
 			System.out.println("Seleccione el producto que quiere en numero");
 			System.out.println("1." + nomproducto1);
@@ -116,7 +139,7 @@ public class Cliente {
 			System.out.println("4." + nomproducto4);
 			System.out.println("5." + nomproducto5);
 			int resp1 = sc.nextInt();
-
+			// le damos la opcion de elegir otro
 			System.out.println("¿Quiere otro?(recuerde que solo le queda 1)");
 			System.out.println("1.si ... 2.No");
 			int decision = sc.nextInt();
@@ -130,20 +153,25 @@ public class Cliente {
 				resp2 = sc.nextInt();
 				if (resp1 != resp2) {
 					switch (resp1) {
+					// le imprimimos los productos que haya pedido y pedimos cantidad+calculo de
+					// precio
 					case 1:
 						System.out.println("Tu primer producto:" + nomproducto1);
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto1.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto1;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el primer producto es:" + precfin1);
+
 						break;
 					case 2:
 						System.out.println("Tu primer producto:" + nomproducto2);
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto2.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto2;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el primer producto es:" + precfin1);
@@ -153,6 +181,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto3.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto3;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el primer producto es:" + precfin1);
@@ -162,6 +191,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto4.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto4;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el primer producto es:" + precfin1);
@@ -171,6 +201,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto5.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto5;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el primer producto es:" + precfin1);
@@ -179,11 +210,13 @@ public class Cliente {
 						System.out.println("Opción no válida. Por favor, seleccione un número entre 1 y 5.");
 					}
 					switch (resp2) {
+					// imprimimos segundo producto pedimos cantidad e imprimimos precio
 					case 1:
 						System.out.println("Tu segundo producto es un Movil.");
 						System.out.println("Indique la cantidad que quiere");
 						cant2 = sc.nextInt();
 						producto1.setCantidad(cant2);
+						this.cant2 = cant2;
 						precp2 = precproducto1;
 						precfin2 = precp2 * cant2;
 						System.out.println("el precio a pagar por el segundo producto es:" + precfin2);
@@ -194,6 +227,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant2 = sc.nextInt();
 						producto2.setCantidad(cant2);
+						this.cant2 = cant2;
 						precp2 = precproducto2;
 						precfin2 = precp2 * cant2;
 						System.out.println("el precio a pagar por el segundo producto es:" + precfin2);
@@ -203,6 +237,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant2 = sc.nextInt();
 						producto3.setCantidad(cant2);
+						this.cant2 = cant2;
 						precp2 = precproducto3;
 						precfin2 = precp2 * cant2;
 						System.out.println("el precio a pagar por el segundo producto es:" + precfin2);
@@ -212,6 +247,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant2 = sc.nextInt();
 						producto4.setCantidad(cant2);
+						this.cant2 = cant2;
 						precp2 = precproducto4;
 						precfin2 = precp2 * cant2;
 						System.out.println("el precio a pagar por el segundo producto es:" + precfin2);
@@ -221,6 +257,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant2 = sc.nextInt();
 						producto5.setCantidad(cant2);
+						this.cant2 = cant2;
 						precp2 = precproducto5;
 						precfin2 = precp2 * cant2;
 						System.out.println("el precio a pagar por el segundo producto es:" + precfin2);
@@ -234,11 +271,13 @@ public class Cliente {
 			} else {
 				if (decision == 2) {
 					switch (resp1) {
+					// Opcion de 1 solo pedido
 					case 1:
 						System.out.println("Tu producto:" + nomproducto1);
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto1.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto1;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el  producto es:" + precfin1);
@@ -248,6 +287,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto2.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto2;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el  producto es:" + precfin1);
@@ -257,6 +297,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto3.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto3;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el  producto es:" + precfin1);
@@ -266,6 +307,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto4.setCantidad(cant1);
+						this.cant1 = cant1;
 						precp1 = precproducto4;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el  producto es:" + precfin1);
@@ -275,7 +317,7 @@ public class Cliente {
 						System.out.println("Indique la cantidad que quiere");
 						cant1 = sc.nextInt();
 						producto5.setCantidad(cant1);
-
+						this.cant1 = cant1;
 						precp1 = precproducto5;
 						precfin1 = precp1 * cant1;
 						System.out.println("el precio a pagar por el  producto es:" + precfin1);
@@ -286,10 +328,12 @@ public class Cliente {
 				} else {
 					System.out.println("Valor no valido");
 				}
+				sc.close();
 			}
 
 
 		} else {
+			// imprimimos error por si no esta registrado
 			System.out.println("Su numero de telefono no esta registrado");
 			System.out.println("Registrese por favor");
 		}
